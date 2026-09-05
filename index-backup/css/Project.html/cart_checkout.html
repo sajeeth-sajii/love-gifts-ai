@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart Checkout</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        }
+        h1 {
+            margin: 0 0 20px;
+            color: #333;
+            text-align: center;
+        }
+        .cart-summary,
+        .address-section {
+            margin-top: 20px;
+        }
+        .cart-summary-header,
+        .address-section h2 {
+            margin-bottom: 15px;
+            color: #444;
+            border-bottom: 1px solid #e0e0e0;
+            padding-bottom: 10px;
+        }
+        .cart-item {
+            display: flex;
+            gap: 18px;
+            align-items: center;
+            border: 1px solid #e6e6e6;
+            border-radius: 10px;
+            padding: 14px;
+            margin-bottom: 12px;
+        }
+        .cart-item img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        .cart-item-details {
+            flex: 1;
+        }
+        .cart-item-details h3 {
+            margin: 0 0 6px;
+            font-size: 16px;
+            color: #222;
+        }
+        .cart-item-details p {
+            margin: 3px 0;
+            color: #555;
+            font-size: 14px;
+        }
+        .cart-item-meta {
+            text-align: right;
+            min-width: 120px;
+        }
+        .cart-item-meta p {
+            margin: 4px 0;
+            font-weight: bold;
+            color: #333;
+        }
+        .cart-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 5px;
+            gap: 10px;
+        }
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            background: #fafafa;
+            padding: 18px;
+            border-radius: 10px;
+            border: 1px solid #e6e6e6;
+            margin: 20px 0;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .address-section form {
+            display: grid;
+            gap: 16px;
+        }
+        .address-section label {
+            display: block;
+            color: #555;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .address-section input,
+        .address-section textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+        .address-section textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        .place-order-btn {
+            width: 100%;
+            padding: 14px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .place-order-btn:hover {
+            background: #44a047;
+        }
+        .payment-section {
+            margin-top: 20px;
+            padding: 20px;
+            background: #fafafa;
+            border-radius: 12px;
+            border: 1px solid #e6e6e6;
+        }
+        .payment-section h2 {
+            margin-top: 0;
+            color: #444;
+            border-bottom: 1px solid #e0e0e0;
+            padding-bottom: 10px;
+        }
+        .payment-options {
+            display: grid;
+            gap: 12px;
+            margin-top: 16px;
+        }
+        .payment-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 16px;
+            border: 1px solid #d9d9d9;
+            border-radius: 12px;
+            background: white;
+            cursor: pointer;
+        }
+        .payment-option input {
+            accent-color: #4CAF50;
+        }
+        .payment-option-icon {
+            font-size: 22px;
+            width: 28px;
+            text-align: center;
+        }
+        .payment-option-label {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        .payment-option-label strong {
+            color: #333;
+            font-size: 14px;
+        }
+        .payment-option-label span {
+            color: #666;
+            font-size: 13px;
+        }
+        .payment-detail {
+            margin-top: 18px;
+            padding: 18px;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            background: #fff;
+        }
+        .payment-detail.hidden {
+            display: none;
+        }
+        .payment-detail label {
+            display: block;
+            margin: 12px 0 6px;
+            font-weight: bold;
+            color: #555;
+        }
+        .payment-detail input,
+        .payment-detail select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+        .payment-detail .small-help {
+            font-size: 12px;
+            color: #777;
+            margin-top: 4px;
+        }
+        .vendor-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+        .vendor-btn {
+            flex: 1 1 calc(33.333% - 10px);
+            padding: 12px 14px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            background: white;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .vendor-btn:hover {
+            border-color: #4CAF50;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .vendor-btn.active {
+            border-color: #4CAF50;
+            background: #f0fff3;
+        }
+        .vendor-icon {
+            font-size: 32px;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            font-weight: bold;
+            color: white;
+        }
+        .vendor-btn[data-vendor="GPay"] .vendor-icon {
+            background: linear-gradient(135deg, #4285F4 0%, #34A853 50%, #FBBC04 100%);
+        }
+        .vendor-btn[data-vendor="PhonePe"] .vendor-icon {
+            background: linear-gradient(135deg, #5F27CD 0%, #A029D1 100%);
+        }
+        .vendor-btn[data-vendor="Paytm"] .vendor-icon {
+            background: linear-gradient(135deg, #0066CC 0%, #1A4D7A 100%);
+        }
+        .upi-action {
+            margin-top: 12px;
+            padding: 12px 14px;
+            border: none;
+            border-radius: 10px;
+            background: #007bff;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .upi-action:hover {
+            background: #0063d1;
+        }
+        .continue-shopping {
+            display: inline-block;
+            margin-top: 16px;
+            text-decoration: none;
+            color: #4CAF50;
+            font-weight: bold;
+        }
+        .empty-message,
+        .confirmation {
+            text-align: center;
+            color: #666;
+            padding: 18px;
+            background: #fafafa;
+            border-radius: 10px;
+            border: 1px solid #e6e6e6;
+        }
+        .confirmation {
+            border-color: #c8e6c9;
+            background: #edf7ed;
+            color: #256029;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Your Cart & Checkout</h1>
+        <div class="cart-summary">
+            <div class="cart-summary-header"><h2>Cart Items</h2></div>
+            <div id="cartItemsContainer"></div>
+            <div id="cartTotalContainer"></div>
+        </div>
+        <div class="address-section">
+            <h2>Delivery Address</h2>
+            <form id="checkoutForm">
+                <div>
+                    <label for="fullName">Full Name</label>
+                    <input type="text" id="fullName" name="fullName" required>
+                </div>
+                <div>
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div>
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                <div>
+                    <label for="address">Shipping Address</label>
+                    <textarea id="address" name="address" required></textarea>
+                </div>
+                <div class="payment-section">
+                    <h2>Payment Options</h2>
+                    <div class="payment-options">
+                        <label class="payment-option">
+                            <input type="radio" name="paymentMethod" value="card" checked>
+                            <div class="payment-option-icon">💳</div>
+                            <div class="payment-option-label">
+                                <strong>Credit/Debit Card</strong>
+                                <span>Visa, Mastercard, RuPay</span>
+                            </div>
+                        </label>
+                        <label class="payment-option">
+                            <input type="radio" name="paymentMethod" value="upi">
+                            <div class="payment-option-icon">📲</div>
+                            <div class="payment-option-label">
+                                <strong>UPI</strong>
+                                <span>Google Pay, PhonePe, Paytm</span>
+                            </div>
+                        </label>
+                        <label class="payment-option">
+                            <input type="radio" name="paymentMethod" value="netbanking">
+                            <div class="payment-option-icon">🏦</div>
+                            <div class="payment-option-label">
+                                <strong>Net Banking</strong>
+                                <span>All major banks supported</span>
+                            </div>
+                        </label>
+                        <label class="payment-option">
+                            <input type="radio" name="paymentMethod" value="cod">
+                            <div class="payment-option-icon">📦</div>
+                            <div class="payment-option-label">
+                                <strong>Cash on Delivery</strong>
+                                <span>Pay when your order arrives</span>
+                            </div>
+                        </label>
+                    </div>
+                    <div id="paymentDetails" class="payment-detail">
+                        <div id="cardFields">
+                            <label for="cardNumber">Card Number</label>
+                            <input type="text" id="cardNumber" name="cardNumber" placeholder="1234 5678 9012 3456">
+                            <span class="small-help">Enter your 16-digit debit/credit card number.</span>
+
+                            <label for="cardExpiry">Expiry Date</label>
+                            <input type="text" id="cardExpiry" name="cardExpiry" placeholder="MM/YY">
+                            <span class="small-help">Example: 08/28</span>
+
+                            <label for="cardCvv">CVV</label>
+                            <input type="text" id="cardCvv" name="cardCvv" placeholder="123">
+                            <span class="small-help">3-digit code on the back of your card.</span>
+                        </div>
+                        <div id="upiFields" class="hidden">
+                            <label>Select your UPI app</label>
+                            <div class="vendor-buttons">
+                                <button type="button" class="vendor-btn" data-vendor="GPay">
+                                    <span class="vendor-icon">G</span>
+                                    <span>Google Pay</span>
+                                </button>
+                                <button type="button" class="vendor-btn" data-vendor="PhonePe">
+                                    <span class="vendor-icon">P</span>
+                                    <span>PhonePe</span>
+                                </button>
+                                <button type="button" class="vendor-btn" data-vendor="Paytm">
+                                    <span class="vendor-icon">₹</span>
+                                    <span>Paytm</span>
+                                </button>
+                            </div>
+                            <div id="upiVendorSelected" class="small-help" style="margin-top: 10px; color: #333; display: none;"></div>
+                            <button type="button" id="upiPayButton" class="upi-action hidden">Proceed to UPI Payment</button>
+                            <label for="upiId">UPI ID</label>
+                            <input type="text" id="upiId" name="upiId" placeholder="you@okaxis">
+                            <span class="small-help">Enter your UPI ID or select a vendor above to autofill.</span>
+                        </div>
+                        <div id="netbankingFields" class="hidden">
+                            <label for="bankName">Bank Name</label>
+                            <input type="text" id="bankName" name="bankName" placeholder="HDFC Bank, SBI, ICICI">
+                            <span class="small-help">Enter the name of your bank.</span>
+
+                            <label for="accountNumber">Account Number</label>
+                            <input type="text" id="accountNumber" name="accountNumber" placeholder="XXXX-XXXX-XXXX-XXXX">
+                        </div>
+                        <div id="codFields" class="hidden">
+                            <p>Select Cash on Delivery if you want to pay the delivery person in cash when the order arrives.</p>
+                        </div>
+                    </div>
+                </div>
+                <div id="formErrorMessage" class="form-error" style="display:none;"></div>
+                <div id="formErrorMessage" class="form-error" style="display:none;"></div>
+                <button type="submit" class="place-order-btn">Place Order</button>
+            </form>
+            <a href="sajeeth.html" class="continue-shopping">Continue Shopping</a>
+            <div id="confirmationMessage" class="confirmation" style="display:none;"></div>
+        </div>
+    </div>
+
+    <script>
+        let cartItems = [];
+
+        function getCartState(){
+            let items = localStorage.getItem('cartItems');
+            if(items){
+                try{
+                    return JSON.parse(items);
+                } catch(e){
+                    return [];
+                }
+            }
+            return [];
+        }
+
+        function saveCartState(){
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+            let cartCount = cartItems.reduce((sum, item) => sum + (item.quantity || 0), 0);
+            localStorage.setItem('cartCount', String(cartCount));
+        }
+
+        function calculateTotal(cartItems){
+            return cartItems.reduce((sum, item) => {
+                let priceText = item.price.replace(/[^0-9.]/g, '');
+                let numericPrice = parseFloat(priceText) || 0;
+                return sum + numericPrice * (item.quantity || 1);
+            }, 0);
+        }
+
+        function formatCurrency(amount){
+            return '₹' + amount.toFixed(2);
+        }
+
+        function formatQuantity(quantity){
+            return String(quantity).padStart(2, '0');
+        }
+
+        function updateCartCheckoutDisplay(){
+            let cartContainer = document.getElementById('cartItemsContainer');
+            let totalContainer = document.getElementById('cartTotalContainer');
+            let checkoutForm = document.getElementById('checkoutForm');
+
+            if(cartItems.length === 0){
+                cartContainer.innerHTML = '<div class="empty-message">Your cart is empty. Add items first.</div>';
+                totalContainer.innerHTML = '';
+                checkoutForm.style.display = 'none';
+                return;
+            }
+
+            checkoutForm.style.display = 'block';
+            cartContainer.innerHTML = '';
+
+            cartItems.forEach((item, index) => {
+                let priceText = item.price.replace(/[^0-9.]/g, '');
+                let priceValue = parseFloat(priceText) || 0;
+                let quantity = item.quantity || 1;
+                let itemTotal = priceValue * quantity;
+                let cartItemDiv = document.createElement('div');
+                cartItemDiv.className = 'cart-item';
+                cartItemDiv.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}">
+                    <div class="cart-item-details">
+                        <h3>${item.name}</h3>
+                        <p>Unit Price: ${formatCurrency(priceValue)}</p>
+                        <div class="cart-actions">
+                            <button class="qty-btn" onclick="changeItemQuantity(${index}, -1)">-</button>
+                            <span class="qty-display">${formatQuantity(quantity)}</span>
+                            <button class="qty-btn" onclick="changeItemQuantity(${index}, 1)">+</button>
+                        </div>
+                    </div>
+                    <div class="cart-item-meta">
+                        <p>Total</p>
+                        <p>${formatCurrency(itemTotal)}</p>
+                    </div>
+                `;
+                cartContainer.appendChild(cartItemDiv);
+            });
+
+            let totalAmount = calculateTotal(cartItems);
+            totalContainer.innerHTML = `
+                <div class="cart-total">
+                    <span>Grand Total</span>
+                    <span>${formatCurrency(totalAmount)}</span>
+                </div>
+            `;
+        }
+
+        function changeItemQuantity(index, delta){
+            if(!cartItems[index]) return;
+            cartItems[index].quantity = (cartItems[index].quantity || 0) + delta;
+            if(cartItems[index].quantity <= 0){
+                cartItems.splice(index, 1);
+            }
+            saveCartState();
+            updateCartCheckoutDisplay();
+        }
+
+        document.addEventListener('DOMContentLoaded', function(){
+            cartItems = getCartState();
+            if(cartItems.length === 0){
+                window.location.href = 'sajeeth.html';
+                return;
+            }
+            let cartContainer = document.getElementById('cartItemsContainer');
+            let totalContainer = document.getElementById('cartTotalContainer');
+            let confirmation = document.getElementById('confirmationMessage');
+            let checkoutForm = document.getElementById('checkoutForm');
+
+            updateCartCheckoutDisplay();
+
+let formErrorMessage = document.getElementById('formErrorMessage');
+
+                function clearFormError(){
+                    if(formErrorMessage){
+                        formErrorMessage.style.display = 'none';
+                        formErrorMessage.textContent = '';
+                    }
+                }
+
+                function showFormError(message){
+                    if(formErrorMessage){
+                        formErrorMessage.textContent = message;
+                        formErrorMessage.style.display = 'block';
+                    }
+                }
+
+                function validatePaymentSelection(paymentValue){
+                    if(paymentValue === 'card'){
+                        let cardNumber = document.getElementById('cardNumber').value.replace(/\s+/g, '');
+                        let expiry = document.getElementById('cardExpiry').value.trim();
+                        let cvv = document.getElementById('cardCvv').value.trim();
+                        if(!/^\d{15,19}$/.test(cardNumber)) return 'Enter a valid 15-19 digit card number.';
+                        if(!/^(0[1-9]|1[0-2])\/(\d{2})$/.test(expiry)) return 'Enter card expiry in MM/YY format.';
+                        if(!/^\d{3}$/.test(cvv)) return 'Enter a valid 3-digit CVV.';
+                        return '';
+                    }
+                    if(paymentValue === 'upi'){
+                        let upiId = document.getElementById('upiId').value.trim();
+                        if(!upiId || !upiId.includes('@')) return 'Enter a valid UPI ID or select a UPI vendor.';
+                        return '';
+                    }
+                    if(paymentValue === 'netbanking'){
+                        let bankName = document.getElementById('bankName').value.trim();
+                        let accountNumber = document.getElementById('accountNumber').value.replace(/\s+/g, '');
+                        if(!bankName) return 'Enter your bank name for net banking.';
+                        if(!/^\d{6,22}$/.test(accountNumber)) return 'Enter a valid account number.';
+                        return '';
+                    }
+                    return '';
+                }
+
+                checkoutForm.addEventListener('submit', function(event){
+                    event.preventDefault();
+                    clearFormError();
+                    let fullName = document.getElementById('fullName').value.trim();
+                    let address = document.getElementById('address').value.trim();
+                    let totalAmount = calculateTotal(cartItems);
+                    let orderedProducts = cartItems.map(item => `${item.name} x${item.quantity}`).join(', ');
+
+                    let pm = document.querySelector('input[name="paymentMethod"]:checked');
+                    let paymentValue = pm ? pm.value : 'card';
+                    let paymentLabel = 'Credit/Debit Card';
+                    if(paymentValue === 'upi') paymentLabel = 'UPI';
+                    else if(paymentValue === 'netbanking') paymentLabel = 'Net Banking';
+                    else if(paymentValue === 'cod') paymentLabel = 'Cash on Delivery';
+
+                    let validationError = validatePaymentSelection(paymentValue);
+                    if(validationError){
+                        showFormError(validationError);
+                        return;
+                    }
+
+                    if(!fullName){
+                        showFormError('Please enter your full name to continue.');
+                        return;
+                    }
+                    if(!address){
+                        showFormError('Please enter a valid shipping address.');
+                        return;
+                    }
+
+                confirmation.style.display = 'block';
+                confirmation.innerHTML = `
+                    <strong>Order placed!</strong>
+                    <p>Your order for <strong>${orderedProducts}</strong> has been placed.</p>
+                    <p>Order total: <strong>${formatCurrency(totalAmount)}</strong></p>
+                    <p>Shipping address: <strong>${address}</strong></p>
+                    <p>Payment method: <strong>${paymentLabel}</strong></p>
+                `;
+
+                document.querySelector('.cart-summary').style.display = 'none';
+                checkoutForm.style.display = 'none';
+                document.getElementById('paymentDetails').style.display = 'none';
+                localStorage.removeItem('cartItems');
+                localStorage.removeItem('cartCount');
+                cartItems = [];
+            });
+
+            let paymentDetails = document.getElementById('paymentDetails');
+            let cardFields = document.getElementById('cardFields');
+            let upiFields = document.getElementById('upiFields');
+            let netbankingFields = document.getElementById('netbankingFields');
+            let codFields = document.getElementById('codFields');
+            let paymentRadios = document.querySelectorAll('input[name="paymentMethod"]');
+            let upiVendorButtons = document.querySelectorAll('.vendor-btn');
+            let upiPayButton = document.getElementById('upiPayButton');
+            let upiVendorSelected = document.getElementById('upiVendorSelected');
+            let upiIdInput = document.getElementById('upiId');
+            let selectedUpiVendor = '';
+
+            function updatePaymentFields(method){
+                if(!paymentDetails) return;
+                paymentDetails.style.display = 'block';
+                cardFields.classList.toggle('hidden', method !== 'card');
+                upiFields.classList.toggle('hidden', method !== 'upi');
+                netbankingFields.classList.toggle('hidden', method !== 'netbanking');
+                codFields.classList.toggle('hidden', method !== 'cod');
+                if(method !== 'upi'){
+                    selectedUpiVendor = '';
+                    if(upiVendorSelected) upiVendorSelected.style.display = 'none';
+                    if(upiPayButton) upiPayButton.classList.add('hidden');
+                    upiVendorButtons.forEach(btn => btn.classList.remove('active'));
+                }
+            }
+
+            paymentRadios.forEach(radio => {
+                radio.addEventListener('change', function(){
+                    updatePaymentFields(this.value);
+                });
+            });
+
+            upiVendorButtons.forEach(button => {
+                button.addEventListener('click', function(){
+                    selectedUpiVendor = this.dataset.vendor;
+                    upiVendorButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    paymentRadios.forEach(radio => {
+                        if(radio.value === 'upi') radio.checked = true;
+                    });
+                    updatePaymentFields('upi');
+                    if(upiVendorSelected){
+                        upiVendorSelected.style.display = 'block';
+                        upiVendorSelected.innerText = `Selected ${selectedUpiVendor}. Click below to continue with ${selectedUpiVendor}.`;
+                    }
+                    if(upiIdInput){
+                        let alias = selectedUpiVendor.toLowerCase();
+                        if(alias === 'gpay') alias = 'gpay';
+                        else if(alias === 'phonepe') alias = 'phonepe';
+                        else if(alias === 'paytm') alias = 'paytm';
+                        upiIdInput.value = `${alias}@okaxis`;
+                    }
+                    if(upiPayButton){
+                        upiPayButton.classList.remove('hidden');
+                        upiPayButton.innerText = `Pay with ${selectedUpiVendor}`;
+                    }
+                });
+            });
+
+            if(upiPayButton){
+                upiPayButton.addEventListener('click', function(){
+                    if(!selectedUpiVendor) return;
+                    if(upiVendorSelected){
+                        upiVendorSelected.innerText = `Proceeding with ${selectedUpiVendor}... Enter OTP in your app to complete payment.`;
+                    }
+                });
+            }
+
+            let selectedMethod = document.querySelector('input[name="paymentMethod"]:checked');
+            if(selectedMethod){
+                updatePaymentFields(selectedMethod.value);
+            }
+        });
+    </script>
+</body>
+</html>

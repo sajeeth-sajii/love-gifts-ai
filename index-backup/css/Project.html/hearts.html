@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hearts - Love Gifts</title>
+    <!-- Link to main stylesheet -->
+    <link rel="stylesheet" href="project.css">
+    <link rel="stylesheet" href="ai-gift-assistant.css">
+    <!-- Font Awesome icons library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+</head>
+<body>
+    <!-- Link to JavaScript file for cart functionality -->
+    <script src="project.js"></script>
+    <script src="ai-gift-assistant.js"></script>
+    
+    <!-- Top promotional bar -->
+    <div class="top-bar">
+        <p>Free Delivery On First Users</p>
+    </div>
+    
+    <!-- Header section with logo and search -->
+    <header>
+        <!-- Logo that links back to main page -->
+        <h2><a href="sajeeth.html" style="text-decoration: none; color: inherit;">💗Love Gifts</a></h2>
+        <!-- Search box with icon -->
+        <div class="search-box">
+            <input id="productSearch" type="text" placeholder="❤️search Gifts">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <div class="search-suggestions" id="searchSuggestions"></div>
+        </div>
+        <!-- Cart button with badge showing item count -->
+        <button class="topHr cart-header-btn" onclick="toggleCart()">Cart<span class="badge" id="cartCount">0</span>
+            <i class="fa-solid fa-cart-shopping"></i>
+        </button>
+        <!-- Wishlist button - clickable to toggle wishlist panel -->
+        <button class="topHr wishlist-header-btn" onclick="toggleWishlist()">Whishlist<span class="badge" id="wishlistCount">0</span>
+            <i class="fa-solid fa-heart"></i>
+        </button>
+    </header>
+    
+    <!-- CART PANEL - Shows items added to cart -->
+    <div id="cartPanel">
+        <h3>🛒 My Cart</h3>
+        <div id="cartItems">
+            <p style="text-align: center; color: #999;">Your cart is empty</p>
+        </div>
+    </div>
+    
+    <!-- WISHLIST PANEL - Shows items added to wishlist via heart icons -->
+    <div id="wishlistPanel">
+        <h3>❤️ My Wishlist</h3>
+        <div id="wishlistItems">
+            <p style="text-align: center; color: #999;">Your wishlist is empty</p>
+        </div>
+    </div>
+    
+    <!-- Navigation menu for categories - links to different category pages -->
+    <nav>
+        <a class="navHr" href="flowers.html">Flowers</a>
+        <a class="navHr" href="chocolates.html">Chocolates</a>
+        <a class="navHr" href="teddy.html">Teddy</a>
+        <a class="navHr" href="jewelry.html">Jewelry</a>
+        <a class="navHr" href="gifts.html">Gifts</a>
+        <a class="navHr" href="hearts.html">Hearts</a>
+    </nav>
+
+    <!-- Page heading for Hearts category -->
+    <span class="bhaai">
+        <h2>❤️ Hearts Collection</h2>
+    </span>
+
+    <!-- First row of heart products (4 items) -->
+    <section class="bottomgap">
+        <div class="products">
+            <div class="cart">
+                <img src="Project.Hearts/red heart.webp" alt="heart-red">
+                <h3>Red Heart</h3>
+                <!-- Price with Indian Rupee symbol -->
+                <p><i class="fa-solid fa-indian-rupee"></i>49</p>
+                <!-- Cart section with add/remove buttons -->
+                <div class="cart-section">
+                    <!-- Add to cart button - onclick calls showCounter function -->
+                    <button class="cartHra visited" onclick="showCounter(this)">Add Cart <i class="fa-solid fa-cart-shopping"></i></button>
+                    <!-- Heart/Wishlist button - adds item to wishlist -->
+                    <button class="wishlist-btn" onclick="addToWishlist(this)" title="Add to Wishlist">❤️</button>
+                    <!-- Quantity counter (hidden initially) -->
+                    <div class="counter" style="display: none;">
+                        <!-- Decrease button -->
+                        <button onclick="decrease(this)">-</button>
+                        <!-- Current quantity -->
+                        <span class="count">1</span>
+                        <!-- Increase button -->
+                        <button onclick="increase(this)">+</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cart">
+                <img src="Project.Hearts/pink heart.webp" alt="heart-pink">
+                <h3>Pink Heart</h3>
+                <p><i class="fa-solid fa-indian-rupee"></i>59</p>
+                <div class="cart-section">
+                    <button class="cartHra visited" onclick="showCounter(this)">Add Cart <i class="fa-solid fa-cart-shopping"></i></button>
+                    <button class="wishlist-btn" onclick="addToWishlist(this)" title="Add to Wishlist">❤️</button>
+                    <div class="counter" style="display: none;">
+                        <button onclick="decrease(this)">-</button>
+                        <span class="count">1</span>
+                        <button onclick="increase(this)">+</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cart">
+                <img src="Project.Hearts/gold-heart-.webp" alt="heart-gold">
+                <h3>Gold Heart</h3>
+                <p><i class="fa-solid fa-indian-rupee"></i>79</p>
+                <div class="cart-section">
+                    <button class="cartHra visited" onclick="showCounter(this)">Add Cart <i class="fa-solid fa-cart-shopping"></i></button>
+                    <button class="wishlist-btn" onclick="addToWishlist(this)" title="Add to Wishlist">❤️</button>
+                    <div class="counter" style="display: none;">
+                        <button onclick="decrease(this)">-</button>
+                        <span class="count">1</span>
+                        <button onclick="increase(this)">+</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cart">
+                <img src="Project.Hearts/multi silver heart.webp" alt="heart-silver">
+                <h3>Silver Heart</h3>
+                <p><i class="fa-solid fa-indian-rupee"></i>99</p>
+                <div class="cart-section">
+                    <button class="cartHra visited" onclick="showCounter(this)">Add Cart <i class="fa-solid fa-cart-shopping"></i></button>
+                    <button class="wishlist-btn" onclick="addToWishlist(this)" title="Add to Wishlist">❤️</button>
+                    <div class="counter" style="display: none;">
+                        <button onclick="decrease(this)">-</button>
+                        <span class="count">1</span>
+                        <button onclick="increase(this)">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Second row of heart products (4 items) -->
+    <section class="topgap">
+        <div class="secondDivision">
+            <div class="secondone">
+                <img src="Project.Hearts/sparkle-gold-glitter-heart-photo.webp" alt="heart-crystal">
+                <h3>Gold Glitter Heart</h3>
+                <p><i class="fa-solid fa-indian-rupee"></i>199</p>
+                <div class="cart-section">
+                    <button class="cartHra visited" onclick="showCounter(this)">Add Cart <i class="fa-solid fa-cart-shopping"></i></button>
+                    <div class="counter" style="display: none;">
+                        <button onclick="decrease(this)">-</button>
+                        <span class="count">1</span>
+                        <button onclick="increase(this)">+</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="secondone">
+                <img src="Project.Hearts/GrownDiamond.webp" alt="heart-diamond">
+                <h3>Diamond Heart</h3>
+                <p><i class="fa-solid fa-indian-rupee"></i>499</p>
+                <div class="cart-section">
+                    <button class="cartHra visited" onclick="showCounter(this)">Add Cart <i class="fa-solid fa-cart-shopping"></i></button>
+                    <button class="wishlist-btn" onclick="addToWishlist(this)" title="Add to Wishlist">❤️</button>
+                    <div class="counter" style="display: none;">
+                        <button onclick="decrease(this)">-</button>
+                        <span class="count">1</span>
+                        <button onclick="increase(this)">+</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="secondone">
+                <img src="Project.Hearts/Heart balloon.webp" alt="heart-balloon">
+                <h3>Heart Balloon</h3>
+                <p><i class="fa-solid fa-indian-rupee"></i>149</p>
+                <div class="cart-section">
+                    <button class="cartHra visited" onclick="showCounter(this)">Add Cart <i class="fa-solid fa-cart-shopping"></i></button>
+                    <button class="wishlist-btn" onclick="addToWishlist(this)" title="Add to Wishlist">❤️</button>
+                    <div class="counter" style="display: none;">
+                        <button onclick="decrease(this)">-</button>
+                        <span class="count">1</span>
+                        <button onclick="increase(this)">+</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="secondone">
+                <img src="Project.Hearts/diamond-with-red-ribbon-.webp" alt="heart-pendant">
+                <h3>Diamond with Red<br>Ribbon Heart</h3>
+                <p><i class="fa-solid fa-indian-rupee"></i>349</p>
+                <div class="cart-section">
+                    <button class="cartHra visited" onclick="showCounter(this)">Add Cart <i class="fa-solid fa-cart-shopping"></i></button>
+                    <button class="wishlist-btn" onclick="addToWishlist(this)" title="Add to Wishlist">❤️</button>
+                    <div class="counter" style="display: none;">
+                        <button onclick="decrease(this)">-</button>
+                        <span class="count">1</span>
+                        <button onclick="increase(this)">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Third row of heart products (4 items) -->
+    <section class="thirdgap">
+        <div class="thirdDivision">
+            <div class="thirdone">
+                <img src="Project.Hearts/heart pillow.webp" alt="heart-pillow">
+                <h3>Heart Pillow</h3>
+                <p><i class="fa-solid fa-indian-rupee"></i>399</p>
+                <div class="cart-section">
+                    <button class="cartHra visited" onclick="showCounter(this)">Add Cart <i class="fa-solid fa-cart-shopping"></i></button>
+                    <button class="wishlist-btn" onclick="addToWishlist(this)" title="Add to Wishlist">❤️</button>
+                    <div class="counter" style="display: none;">
+                        <button onclick="decrease(this)">-</button>
+                        <span class="count">1</span>
+                        <button onclick="increase(this)">+</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="thirdone">
+                <img src="Project.Hearts/heart lamp.webp" alt="heart-lamp">
+                <h3>Heart Lamp</h3>
+                <p><i class="fa-solid fa-indian-rupee"></i>599</p>
+                <div class="cart-section">
+                    <button class="cartHra visited" onclick="showCounter(this)">Add Cart <i class="fa-solid fa-cart-shopping"></i></button>
+                    <button class="wishlist-btn" onclick="addToWishlist(this)" title="Add to Wishlist">❤️</button>
+                    <div class="counter" style="display: none;">
+                        <button onclick="decrease(this)">-</button>
+                        <span class="count">1</span>
+                        <button onclick="increase(this)">+</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="thirdone">
+                <img src="Project.Hearts/lamp-i-love-u-heart.webp" alt="heart-frame">
+                <h3>Love Lamp Heart</h3>
+                <p><i class="fa-solid fa-indian-rupee"></i>299</p>
+                <div class="cart-section">
+                    <button class="cartHra visited" onclick="showCounter(this)">Add Cart <i class="fa-solid fa-cart-shopping"></i></button>
+                    <button class="wishlist-btn" onclick="addToWishlist(this)" title="Add to Wishlist">❤️</button>
+                    <div class="counter" style="display: none;">
+                        <button onclick="decrease(this)">-</button>
+                        <span class="count">1</span>
+                        <button onclick="increase(this)">+</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="thirdone">
+                <img src="Project.Hearts/heart gift box.webp" alt="heart-box">
+                <h3>Heart Gift Box</h3>
+                <p><i class="fa-solid fa-indian-rupee"></i>399</p>
+                <div class="cart-section">
+                    <button class="cartHra visited" onclick="showCounter(this)">Add Cart <i class="fa-solid fa-cart-shopping"></i></button>
+                    <button class="wishlist-btn" onclick="addToWishlist(this)" title="Add to Wishlist">❤️</button>
+                    <div class="counter" style="display: none;">
+                        <button onclick="decrease(this)">-</button>
+                        <span class="count">1</span>
+                        <button onclick="increase(this)">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

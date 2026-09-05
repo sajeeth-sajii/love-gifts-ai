@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Build Your Own Bouquet — Demo</title>
+  <link rel="stylesheet" href="css/build-bouquet.css">
+  <style>body{font-family:system-ui,Segoe UI,Roboto,Arial;margin:20px;background:#fff;color:#222}</style>
+</head>
+<body>
+  <h1>Build Your Own Bouquet</h1>
+  <div class="builder-wrap">
+    <div class="controls">
+      <h2>Select Flowers</h2>
+      <div class="flower-list">
+        <div class="flower-card" data-type="Rose" data-price="30">
+          <img src="../index.html/love_files/bouquet-red-roses-2432330.jpg" alt="Rose">
+          <div class="meta"><strong>Rose</strong><span>₹30</span></div>
+          <div class="qty">
+            <button class="dec">-</button>
+            <span class="count">0</span>
+            <button class="inc">+</button>
+          </div>
+          <button class="add">Add</button>
+        </div>
+
+        <div class="flower-card" data-type="Lily" data-price="45">
+          <img src="../index.html/love_files/flower-bouquet-pink-roses-isolated-white-background-88839971.jpg" alt="Lily">
+          <div class="meta"><strong>Lily</strong><span>₹45</span></div>
+          <div class="qty">
+            <button class="dec">-</button>
+            <span class="count">0</span>
+            <button class="inc">+</button>
+          </div>
+          <button class="add">Add</button>
+        </div>
+
+        <div class="flower-card" data-type="Tulip" data-price="25">
+          <img src="../index.html/love_files/bouquet-bright-white-yellow-roses-gray-concrete-background-bright-yellow-roses-113623305.jpg" alt="Tulip">
+          <div class="meta"><strong>Tulip</strong><span>₹25</span></div>
+          <div class="qty">
+            <button class="dec">-</button>
+            <span class="count">0</span>
+            <button class="inc">+</button>
+          </div>
+          <button class="add">Add</button>
+        </div>
+
+        <div class="flower-card" data-type="Sunflower" data-price="35">
+          <img src="../index.html/love_files/frame-roses-14646893.jpg" alt="Sunflower">
+          <div class="meta"><strong>Sunflower</strong><span>₹35</span></div>
+          <div class="qty">
+            <button class="dec">-</button>
+            <span class="count">0</span>
+            <button class="inc">+</button>
+          </div>
+          <button class="add">Add</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="preview">
+      <h2>Your Bouquet</h2>
+      <div class="bouquet-preview" aria-live="polite"></div>
+      <div class="summary">
+        <div>Total items: <span id="totalItems">0</span></div>
+        <div>Total price: ₹<span id="totalPrice">0</span></div>
+      </div>
+      <div class="actions">
+        <button id="clearBtn">Clear Bouquet</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/build-bouquet.js"></script>
+</body>
+</html>

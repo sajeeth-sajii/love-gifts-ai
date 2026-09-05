@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "index-backup",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}

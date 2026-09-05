@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Virtual Gift Unboxing Demo</title>
+  <link rel="stylesheet" href="css/virtual-unboxing.css">
+  <style>
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;background:#fff;padding:28px}
+    .demo-wrap{max-width:900px;margin:0 auto}
+    h1{font-size:20px;color:#333}
+    .products{display:flex;gap:18px;flex-wrap:wrap}
+    .product{width:220px;text-align:center}
+    .product h3{margin:10px 0 6px;font-size:16px}
+    .hint{color:#666;font-size:13px;margin-top:12px}
+  </style>
+</head>
+<body>
+  <div class="demo-wrap">
+    <h1>Virtual Gift Unboxing — Demo</h1>
+    <p class="hint">Click the gift box to play the ribbon → box → gift sequence.</p>
+
+    <div class="products">
+      <div class="product">
+        <div class="virtual-unbox" data-box-src="../index.html/Gifts_files/valentines-background-with-red-gift-box-heart-shape-couple-combination-padlock-white-wooden_35355-2515.jpg" data-gift-src="../index.html/Gifts_files/beautiful-gift-with-red-ribbon_58409-3056.jpg" aria-label="Virtual unbox example">
+          <button class="unbox-trigger" type="button" aria-pressed="false" title="Open gift">
+            <span class="ribbon"></span>
+            <span class="box">
+              <img class="box-image" src="index.html/Jwellery.png" alt="gift box">
+              <span class="lid"></span>
+              <span class="base"></span>
+            </span>
+            <span class="gift" aria-hidden="true">
+              <img src="../index.html/Gifts_files/beautiful-gift-with-red-ribbon_58409-3056.jpg" alt="gift">
+            </span>
+          </button>
+        </div>
+        <h3>Red Gift — Demo</h3>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/virtual-unboxing.js"></script>
+</body>
+</html>

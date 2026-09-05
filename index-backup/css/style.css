@@ -1,0 +1,75 @@
+p{
+    color: blue;
+}
+.gray{
+    color: gray;
+    font-style: italic;
+}
+p span{
+    background-color: black;
+     
+}
+*{
+    font-family:  monospace;
+    margin: 7;
+    padding: 7;
+    box-sizing: border-box
+} 
+body{
+    background-color:rgba(228, 237, 227, 0.937);
+    width: 100vw;
+    font-size: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+     
+    
+}
+p{
+    color:rgb(red, green, blue)
+}
+.container{
+    border: 2px dashed red;
+    width: px;
+    font-size: 1rem;
+    padding: 0.5em;
+    margin-top: 1.5em ;
+    margin-right: 1.5em;
+    margin-bottom: 1.5em;;
+    margin-left: 1.5em;
+}
+p{
+    font-size: 1rem;  
+    padding: em;
+    width: 50ch ;
+}
+.circle{
+    margin: 2em auto;
+    border:10px solid green;
+    border-radius: 50%;
+    background-color: yellow;
+    width: 100px;
+    height:100px ;
+    outline: 5px dashed black; 
+    outline-offset: 10px;
+}
+p{
+    font-style: italic;
+}
+a{
+    text-decoration:non  e;
+}
+a:visited{
+    color: rgb(241, 7, 241);
+
+}
+a:hover{
+    color: rgb(22, 15, 236);
+}
+.outer-container{
+    border: 3px dashed black  ;
+    width: 40vw;
+    height: 76vh;
+    margin: 30px;
+}
+html{
+    scroll-behavior: smooth;
+}

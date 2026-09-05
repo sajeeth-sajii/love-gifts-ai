@@ -1,0 +1,29 @@
+
+table, tr, th, td, caption {
+    border: 1px solid #eee;
+    font-family: 'courier New','Courier New', Courier, monospace;
+    border-collapse:collapse;
+    padding:0.5rem;
+} 
+.search-box{
+    position: relative;
+    display: inline-block;
+}
+.search-box i{
+    position:absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: red;
+}
+.search-box input{
+    padding-left: 35px;
+    width: 200px;
+    height: 35px;
+}
+button{
+    background-color: #9a9596;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+}

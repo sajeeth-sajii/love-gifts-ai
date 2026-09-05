@@ -1,0 +1,206 @@
+:root {
+  --pink: #ff4d6d;
+  --pink-dark: #d93f5f;
+  --cream: #fff7fa;
+  --text: #2f2336;
+  --muted: #7a6373;
+}
+
+.bouquet-builder-section {
+  margin: 28px 20px 0;
+  padding: 24px;
+  background: linear-gradient(135deg, #fff7fa 0%, #ffeef3 100%);
+  border-radius: 22px;
+  box-shadow: 0 16px 36px rgba(255, 77, 109, 0.14);
+}
+
+.builder-heading {
+  margin-bottom: 18px;
+}
+
+.builder-heading h2 {
+  margin: 0 0 6px;
+  color: #c22d56;
+}
+
+.builder-heading p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.builder-layout {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 20px;
+}
+
+.builder-controls,
+.builder-preview-card {
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(255, 77, 109, 0.15);
+  border-radius: 18px;
+  padding: 18px;
+}
+
+.flower-list {
+  display: grid;
+  gap: 12px;
+}
+
+.flower-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: var(--cream);
+}
+
+.flower-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.flower-icon {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #ffe4eb;
+  font-size: 1.2rem;
+}
+
+.flower-name {
+  font-weight: 700;
+  color: var(--text);
+}
+
+.flower-price {
+  font-size: 0.86rem;
+  color: var(--muted);
+}
+
+.qty-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.qty-btn {
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 50%;
+  background: var(--pink);
+  color: white;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.qty-value {
+  min-width: 18px;
+  text-align: center;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.builder-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.builder-btn {
+  border: none;
+  padding: 10px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.builder-btn.primary {
+  background: var(--pink);
+  color: white;
+}
+
+.builder-btn.secondary {
+  background: #fde8ee;
+  color: var(--text);
+}
+
+.preview-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.preview-header h3 {
+  margin: 0;
+  color: var(--text);
+}
+
+.price-pill {
+  padding: 7px 11px;
+  background: #ffe4eb;
+  color: var(--pink);
+  border-radius: 999px;
+  font-weight: 700;
+}
+
+.preview-area {
+  margin-top: 14px;
+  min-height: 220px;
+  border-radius: 16px;
+  background: linear-gradient(145deg, #fff8fb, #ffeef3);
+  border: 1px dashed rgba(255, 77, 109, 0.2);
+  display: grid;
+  place-items: center;
+  padding: 12px;
+}
+
+.preview-area svg {
+  width: 100%;
+  max-width: 280px;
+  height: auto;
+}
+
+.selection-summary {
+  margin-top: 12px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.cart-message {
+  margin: 10px 0 0;
+  min-height: 20px;
+  color: var(--pink-dark);
+  font-weight: 700;
+}
+
+@media (max-width: 900px) {
+  .builder-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .bouquet-builder-section {
+    margin: 20px 10px 0;
+    padding: 16px;
+  }
+
+  .flower-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .qty-controls {
+    width: 100%;
+    justify-content: space-between;
+  }
+}

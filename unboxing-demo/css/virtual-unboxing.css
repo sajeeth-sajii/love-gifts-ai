@@ -1,0 +1,39 @@
+:root{
+  --unbox-width: 240px;
+  --ribbon-color: #d24;
+  --box-color: #d66;
+  --transition-ease: cubic-bezier(.2,.9,.27,1);
+}
+
+.virtual-unbox{display:inline-block; width:var(--unbox-width); perspective:1200px; -webkit-tap-highlight-color:transparent}
+.virtual-unbox .unbox-trigger{all:unset; cursor:pointer; display:block; width:100%; position:relative; text-align:center}
+
+/* Ribbon */
+.virtual-unbox .ribbon{
+  position:absolute; left:50%; transform:translateX(-50%); top:12%;
+  width:70%; height:18px; background:var(--ribbon-color); border-radius:8px;
+  transform-origin:center center; transition:transform 380ms var(--transition-ease), opacity 220ms ease; z-index:5;
+  box-shadow:0 2px 6px rgba(0,0,0,.25);
+}
+
+/* Box elements (lid + base) */
+.virtual-unbox .box{display:block; position:relative; width:100%; padding-top:90%; overflow:visible}
+.virtual-unbox img.box-image{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; border-radius:6px; display:block; transform-origin:center top; transition:transform 600ms var(--transition-ease), filter 300ms ease}
+.virtual-unbox .lid{position:absolute; left:0; right:0; height:55%; top:0; background:transparent; transform-origin:center top; transition:transform 600ms var(--transition-ease); z-index:4}
+.virtual-unbox .base{position:absolute; left:0; right:0; bottom:0; height:55%; background:transparent; z-index:2;}
+
+/* Gift reveal */
+.virtual-unbox .gift{position:absolute; left:50%; top:40%; transform:translate(-50%,0) scale(.85); opacity:0; transition:transform 520ms var(--transition-ease), opacity 420ms ease; pointer-events:none; z-index:6}
+.virtual-unbox .gift img{max-width:70%; display:block; margin:0 auto; border-radius:6px; box-shadow:0 10px 30px rgba(0,0,0,.28)}
+
+/* Sequence classes added by JS */
+.virtual-unbox.ribbon-open .ribbon{transform:translateX(-50%) translateY(-40px) rotate(-20deg); opacity:0}
+.virtual-unbox.box-open img.box-image{transform:translateY(18%) rotateX(-18deg)}
+.virtual-unbox.gift-show .gift{opacity:1; transform:translate(-50%, -18%) scale(1)}
+.virtual-unbox.opening{pointer-events:none}
+
+.virtual-unbox .unbox-trigger:focus .ribbon{box-shadow:0 0 0 4px rgba(210,36,36,.15)}
+
+@media (max-width:520px){
+  :root{--unbox-width:160px}
+}

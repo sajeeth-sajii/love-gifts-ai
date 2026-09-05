@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teddy Bears - Love Gifts</title>
+    <!-- Link to main stylesheet -->
+    <link rel="stylesheet" href="project.css">
+    <link rel="stylesheet" href="ai-gift-assistant.css">
+    <!-- Font Awesome icons library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+</head>
+<body>
+    <!-- Link to JavaScript file for cart functionality -->
+    <script src="project.js"></script>
+    <script src="ai-gift-assistant.js"></script>
+    
+    <!-- Top promotional bar -->
+    <div class="top-bar">
+        <p>Free Delivery On First Users</p>
+    </div>
+    
+    <!-- Header section with logo and search -->
+    <header>
+        <!-- Logo that links back to main page -->
+        <h2><a href="sajeeth.html" style="text-decoration: none; color: inherit;">💗Love Gifts</a></h2>
+        <!-- Search box with icon -->
+        <div class="search-box">
+            <input id="productSearch" type="text" placeholder="❤️search Gifts">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <div class="search-suggestions" id="searchSuggestions"></div>
+        </div>
+        <!-- Cart button with badge showing item count -->
+        <button class="topHr cart-header-btn" onclick="toggleCart()">Cart<span class="badge" id="cartCount">0</span>
+            <i class="fa-solid fa-cart-shopping"></i>
+        </button>
+        <!-- Wishlist button - clickable to toggle wishlist panel -->
+        <button class="topHr wishlist-header-btn" onclick="toggleWishlist()">Whishlist<span class="badge" id="wishlistCount">0</span>
+            <i class="fa-solid fa-heart"></i>
+        </button>
+    </header>
+    
+    <!-- CART PANEL - Shows items added to cart -->
+    <div id="cartPanel">
+        <h3>🛒 My Cart</h3>
+        <div id="cartItems">
+            <p style="text-align: center; color: #999;">Your cart is empty</p>
+        </div>
+    </div>
+    
+    <!-- WISHLIST PANEL - Shows items added to wishlist via heart icons -->
+    <div id="wishlistPanel">
+        <h3>❤️ My Wishlist</h3>
+        <div id="wishlistItems">
+            <p style="text-align: center; color: #999;">Your wishlist is empty</p>
+        </div>
+    </div>
+    
+    <!-- Navigation menu for categories - links to different category pages -->
+    <nav>
+        <a class="navHr" href="flowers.html">Flowers</a>
+        <a class="navHr" href="chocolates.html">Chocolates</a>
+        <a class="navHr" href="teddy.html">Teddy</a>
+        <a class="navHr" href="jewelry.html">Jewelry</a>
+        <a class="navHr" href="gifts.html">Gifts</a>
+        <a class="navHr" href="hearts.html">Hearts</a>
+    </nav>
+
+    <!-- Page heading for Teddy Bears category -->
+    <span class="bhaai">
+        <h2>🧸 Teddy Bears Collection</h2>
+    </span>
+
+    <!-- First row of teddy products (4 items) -->
+    <section class="bottomgap">
+        <div class="products">
+            <div class="cart">
+                <img src="Project.Teddy Bear/Brown Teddyy.jpg" alt="teddy-brown">
+                <h3>Brown Teddy Bear</h3>
+                <!-- Price with Indian Rupee symbol -->
+                <p><i class="fa-solid fa-indian-rupee"></i>299</p>
+                <!-- Cart section with add/remove buttons -->
+                <div class="cart-section">
+                    <!-- Add to cart button - onclick calls showCounter function -->
+                    <button class="cartHra visited" onclick="showCounter(this)">Add Cart <i class="fa-solid fa-cart-shopping"></i></button>
+                    <!-- Heart/Wishlist button - adds item to wishlist -->
+                    <button class="wishlist-btn" onclick="addToWishlist(this)" title="Add to Wishlist">❤️</button>
+                    <!-- Quantity counter (hidden initially) -->
+                    <div class="counter" style="display: none;">
+                        <!-- Decrease button -->
+                        <button onclick="decrease(this)">-</button>
+                        <!-- Current quantity -->
+                        <span class="count">1</span>
+                        <!-- Increase button -->
+                        <button onclick="increase(this)">+</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cart">
+                <img src="Project.Teddy Bear/white teddy.jpg" alt="teddy-white">
+                <h3>White Teddy Bear</h3>
+                <p><i class="fa-solid fa-indian-rupee"></i>349</p>
+                <div class="cart-section">
+                    <button class="cartHra visited" onclick="showCounter(this)">Add Cart <i class="fa-solid fa-cart-shopping"></i></button>
+                    <button class="wishlist-btn" onclick="addToWishlist(this)" title="Add to Wishlist">❤️</button>
+                    <div class="counter" style="display: none;">
+                        <button onclick="decrease(this)">-</button>
+                        <span class="count">1</span>
+                        <button onclick="increase(this)">+</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cart">
+                <img src="Project.Teddy Bear/pink teddy.jpg" alt="teddy-pink">
+                <h3>Pink Teddy Bear</h3>
+                <p><i class="fa-solid fa-indian-rupee"></i>399</p>
+                <div class="cart-section">
+                    <button class="cartHra visited" onclick="showCounter(this)">Add Cart <i class="fa-solid fa-cart-shopping"></i></button>                    <button class="wishlist-btn" onclick="addToWishlist(this)" title="Add to Wishlist">❤️</button>                    <div class="counter" style="display: none;">
+                        <button onclick="decrease(this)">-</button>
+                        <span class="count">1</span>
+                        <button onclick="increase(this)">+</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cart">
+                <img src="Project.Teddy Bear/Giant teddy.jpg" alt="teddy-giant">
+                <h3>Giant Teddy Bear</h3>
+                <p><i class="fa-solid fa-indian-rupee"></i>699</p>
+                <div class="cart-section">
+                    <button class="cartHra visited" onclick="showCounter(this)">Add Cart <i class="fa-solid fa-cart-shopping"></i></button>                    <button class="wishlist-btn" onclick="addToWishlist(this)" title="Add to Wishlist">❤️</button>                    <div class="counter" style="display: none;">
+                        <button onclick="decrease(this)">-</button>
+                        <span class="count">1</span>
+                        <button onclick="increase(this)">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Second row of teddy products (4 items) -->
+    <section class="topgap">
+        <div class="secondDivision">
+            <div class="secondone">
+                <img src="Project.Teddy Bear/Black teddy.jpg" alt="teddy-black">
+                <h3>Black Teddy</h3>
+                <p><i class="fa-solid fa-indian-rupee"></i>329</p>
+                <div class="cart-section">
+                    <button class="cartHra visited" onclick="showCounter(this)">Add Cart <i class="fa-solid fa-cart-shopping"></i></button>
+                    <button class="wishlist-btn" onclick="addToWishlist(this)" title="Add to Wishlist">❤️</button>
+                    <div class="counter" style="display: none;">
+                        <button onclick="decrease(this)">-</button>
+                        <span class="count">1</span>
+                        <button onclick="increase(this)">+</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="secondone">
+                <img src="Project.Teddy Bear/love teddy.jpg" alt="teddy-heart">
+                <h3>Teddy with Love</h3>
+                <p><i class="fa-solid fa-indian-rupee"></i>449</p>
+                <div class="cart-section">
+                    <button class="cartHra visited" onclick="showCounter(this)">Add Cart <i class="fa-solid fa-cart-shopping"></i></button>
+                    <button class="wishlist-btn" onclick="addToWishlist(this)" title="Add to Wishlist">❤️</button>
+                    <div class="counter" style="display: none;">
+                        <button onclick="decrease(this)">-</button>
+                        <span class="count">1</span>
+                        <button onclick="increase(this)">+</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="secondone">
+                <img src="Project.Teddy Bear/couple teddy.jpg" alt="teddy-couple">
+                <h3>Couple Teddy Set</h3>
+                <p><i class="fa-solid fa-indian-rupee"></i>799</p>
+                <div class="cart-section">
+                    <button class="cartHra visited" onclick="showCounter(this)">Add Cart <i class="fa-solid fa-cart-shopping"></i></button>                    <button class="wishlist-btn" onclick="addToWishlist(this)" title="Add to Wishlist">❤️</button>                    <div class="counter" style="display: none;">
+                        <button onclick="decrease(this)">-</button>
+                        <span class="count">1</span>
+                        <button onclick="increase(this)">+</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="secondone">
+                <img src="Project.Teddy Bear/romantic teddy.jpg" alt="teddy-deluxe">
+                <h3> Romantic Teddy</h3>
+                <p><i class="fa-solid fa-indian-rupee"></i>599</p>
+                <div class="cart-section">
+                    <button class="cartHra visited" onclick="showCounter(this)">Add Cart <i class="fa-solid fa-cart-shopping"></i></button>                    <button class="wishlist-btn" onclick="addToWishlist(this)" title="Add to Wishlist">❤️</button>                    <div class="counter" style="display: none;">
+                        <button onclick="decrease(this)">-</button>
+                        <span class="count">1</span>
+                        <button onclick="increase(this)">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Third row of teddy products (4 items) -->
+    <section class="thirdgap">
+        <div class="thirdDivision">
+            <div class="thirdone">
+                <img src="Project.Teddy Bear/Premium teddy.jpg" alt="teddy-premium">
+                <h3>Premium Teddy</h3>
+                <p><i class="fa-solid fa-indian-rupee"></i>899</p>
+                <div class="cart-section">
+                    <button class="cartHra visited" onclick="showCounter(this)">Add Cart <i class="fa-solid fa-cart-shopping"></i></button>                    <button class="wishlist-btn" onclick="addToWishlist(this)" title="Add to Wishlist">❤️</button>                    <div class="counter" style="display: none;">
+                        <button onclick="decrease(this)">-</button>
+                        <span class="count">1</span>
+                        <button onclick="increase(this)">+</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="thirdone">
+                <img src="Project.Teddy Bear/loveer teddy.jpg" alt="teddy-romantic">
+                <h3>Love Teddy</h3>
+                <p><i class="fa-solid fa-indian-rupee"></i>749</p>
+                <div class="cart-section">
+                    <button class="cartHra visited" onclick="showCounter(this)">Add Cart <i class="fa-solid fa-cart-shopping"></i></button>
+                    <button class="wishlist-btn" onclick="addToWishlist(this)" title="Add to Wishlist">❤️</button>
+                    <div class="counter" style="display: none;">
+                        <button onclick="decrease(this)">-</button>
+                        <span class="count">1</span>
+                        <button onclick="increase(this)">+</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="thirdone">
+                <img src="Project.Teddy Bear/mini teddy set.jpg" alt="teddy-mini">
+                <h3>Mini Teddy Set</h3>
+                <p><i class="fa-solid fa-indian-rupee"></i>249</p>
+                <div class="cart-section">
+                    <button class="cartHra visited" onclick="showCounter(this)">Add Cart <i class="fa-solid fa-cart-shopping"></i></button>                    <button class="wishlist-btn" onclick="addToWishlist(this)" title="Add to Wishlist">❤️</button>                    <div class="counter" style="display: none;">
+                        <button onclick="decrease(this)">-</button>
+                        <span class="count">1</span>
+                        <button onclick="increase(this)">+</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="thirdone">
+                <img src="Project.Teddy Bear/king size teddy.jpg" alt="teddy-king">
+                <h3>King Size Teddy</h3>
+                <p><i class="fa-solid fa-indian-rupee"></i>1299</p>
+                <div class="cart-section">
+                    <button class="cartHra visited" onclick="showCounter(this)">Add Cart <i class="fa-solid fa-cart-shopping"></i></button>
+                    <button class="wishlist-btn" onclick="addToWishlist(this)" title="Add to Wishlist">❤️</button>
+                    <div class="counter" style="display: none;">
+                        <button onclick="decrease(this)">-</button>
+                        <span class="count">1</span>
+                        <button onclick="increase(this)">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

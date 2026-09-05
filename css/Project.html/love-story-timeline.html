@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Love Story Timeline</title>
+  <link rel="stylesheet" href="love-timeline.css" />
+</head>
+<body>
+  <main class="page-shell">
+    <section class="hero-card">
+      <div class="hero-copy">
+        <p class="eyebrow">Love Story Timeline</p>
+        <h1>Share your beautiful journey</h1>
+        <p>Upload your favorite photos or videos, write your love story, and let others comment on your memories. Only the original post owner can reply to comments.</p>
+        <div class="button-row">
+          <a class="btn btn-primary" href="sajeeth.html">Back to Home</a>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="heart-icon">💗</div>
+      </div>
+    </section>
+
+    <section class="composer-card">
+      <h2>Post your story</h2>
+      <form id="postForm" class="composer-form">
+        <input id="viewerName" type="text" placeholder="Your name" required />
+        <textarea id="storyText" rows="4" placeholder="Write your love story here..." required></textarea>
+        <input id="mediaInput" type="file" accept="image/*,video/*" />
+        <p id="uploadStatus" class="small-note">Maximum file size: 5 MB.</p>
+        <button type="submit" class="btn btn-primary">Publish Story</button>
+      </form>
+    </section>
+
+    <section class="feed-card">
+      <div class="feed-heading">
+        <h2>Recent love stories</h2>
+        <p>Comments are welcome. The original post owner can reply to comments.</p>
+      </div>
+      <div id="postsList" class="posts-list"></div>
+    </section>
+  </main>
+
+  <script src="love-timeline.js"></script>
+</body>
+</html>

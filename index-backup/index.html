@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My First Project</title>
+    <!-- Link to main stylesheet -->
+    <link rel="stylesheet" href="project.css">
+    <link rel="stylesheet" href="ai-gift-assistant.css">
+    <!-- Font Awesome icons library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+<body>
+    <!-- Link to JavaScript file for cart functionality -->
+    <script src="project.js"></script>
+    <script src="ai-gift-assistant.js"></script>
+
+    <div class="login-modal" id="loginModal" aria-hidden="true">
+        <div class="login-card">
+            <button class="close-login" id="closeLoginBtn" type="button" aria-label="Close login">×</button>
+            <h3>Welcome back</h3>
+            <p>Sign in with your email and password.</p>
+            <form id="loginForm" class="login-form">
+                <input id="loginUsername" type="email" placeholder="Email" required>
+                <input id="loginPassword" type="password" placeholder="Password" required>
+                <button type="submit" class="login-submit">Login</button>
+            </form>
+            <form id="signupForm" class="login-form" style="display:none;">
+                <input id="signupName" type="text" placeholder="Name" required>
+                <input id="signupEmail" type="email" placeholder="Email" required>
+                <input id="signupPassword" type="password" placeholder="Password" required>
+                <button type="submit" class="login-submit">Create Account</button>
+            </form>
+            <button type="button" id="authModeToggle" style="margin-top:10px; background:transparent; border:none; color:#8b1e3f; cursor:pointer; font-weight:600;">Create Account / Sign Up</button>
+            <div class="social-login">
+                <button type="button" class="social-btn google-btn" data-provider="Google">Continue with Google</button>
+                <button type="button" class="social-btn facebook-btn" data-provider="Facebook">Continue with Facebook</button>
+            </div>
+            <p class="login-status" id="loginStatus">Use your email and password to continue.</p>
+            <button type="button" id="resendVerificationBtn" style="display:none; margin-top:10px; background:#fff; border:1px solid #8b1e3f; color:#8b1e3f; padding:8px 12px; border-radius:8px; cursor:pointer;">Resend verification email</button>
+        </div>
+    </div>
+    
+    <!-- Top promotional bar -->
+    <div class="top-bar">
+        <p>Free Delivery On First Users</p>
+    </div>
+    
+    <!-- Header section with logo and search -->
+    <header>
+        <h2>💗Love Gifts</h2>
+        <div class="search-box">
+            <input id="productSearch" type="text" placeholder="❤️search Gifts">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <div class="search-suggestions" id="searchSuggestions"></div>
+        </div>
+
+        <button class="topHr login-header-btn" id="loginHeaderBtn" type="button">Login</button>
+        <div class="user-chip" id="userChip" style="display:none;">
+            <span id="userNameLabel"></span>
+            <button type="button" id="logoutBtn">Logout</button>
+        </div>
+        
+        <!-- Cart button with badge showing item count -->
+        <button class="topHr cart-header-btn" onclick="toggleCart()">Cart<span class="badge" id="cartCount">0</span>
+            <i class="fa-solid fa-cart-shopping"></i>
+        </button>
+        <!-- Wishlist button - clickable to toggle wishlist panel -->
+        <button class="topHr wishlist-header-btn" onclick="toggleWishlist()">Whishlist<span class="badge" id="wishlistCount">0</span>
+            <i class="fa-solid fa-heart"></i>
+        </button>
+    </header>
+    
+    <!-- CART PANEL - Shows items added to cart -->
+    <div id="cartPanel">
+        <h3>🛒 My Cart</h3>
+        <div id="cartItems">
+            <p style="text-align: center; color: #999;">Your cart is empty</p>
+        </div>
+    </div>
+    
+    <!-- WISHLIST PANEL - Shows items added to wishlist via heart icons -->
+    <div id="wishlistPanel">
+        <h3>❤️ My Wishlist</h3>
+        <div id="wishlistItems">
+            <p style="text-align: center; color: #999;">Your wishlist is empty</p>
+        </div>
+    </div>
+    
+    <!-- Navigation menu for categories -->
+    <nav>
+        <a class="navHr" href="#">Flowers</a>
+        <a class="navHr" href="#">Chocolates</a>
+        <a class="navHr" href="#">Teddy</a>
+        <a class="navHr" href="#">Jewelry</a>
+        <a class="navHr" href="#">Gifts</a>
+        <a class="navHr"  href="#">Hearts</a> 
+    </nav>
+    
+    <!-- Hero section with main call-to-action -->
+    <section class="hero">
+        <div class="hero-text">
+            <h1>Make Every Moment Special</h1>
+            <p>Find the best gift for your Lover</p>
+            <button class="ShopHr">Shop Now</button>
+        </div>
+    </section>
+
+    <!-- New feature section added above categories -->
+    <section class="feature-section" aria-label="featured experiences">
+        <div class="feature-section-header">
+            <h2>Discover More</h2>
+            <p>Premium experiences for unforgettable gifting moments</p>
+        </div>
+
+        <div class="feature-grid">
+            <a href="virtual-unboxing.html" class="feature-card">
+                <div class="feature-icon">🎁</div>
+                <div class="feature-content">
+                    <h3>Virtual Gift Unboxing</h3>
+                    <p>Open & Surprise</p>
+                </div>
+                <div class="feature-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+            </a>
+
+            <a href="bouquet-builder.html" class="feature-card">
+                <div class="feature-icon">🌹</div>
+                <div class="feature-content">
+                    <h3>Build Your Own Bouquet</h3>
+                    <p>Create Your Perfect Bouquet</p>
+                </div>
+                <div class="feature-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+            </a>
+
+            <a href="gift-box-customizer.html" class="feature-card">
+                <div class="feature-icon">🎨</div>
+                <div class="feature-content">
+                    <h3>Gift Box Customizer</h3>
+                    <p>Design Your Own Gift Box</p>
+                </div>
+                <div class="feature-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+            </a>
+
+            <a href="polaroid-memory-wall.html" class="feature-card">
+                <div class="feature-icon">📸</div>
+                <div class="feature-content">
+                    <h3>Polaroid Memory Wall</h3>
+                    <p>Save Your Beautiful Memories</p>
+                </div>
+                <div class="feature-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+            </a>
+
+            <a href="love-story-timeline.html" class="feature-card">
+                <div class="feature-icon">❤️</div>
+                <div class="feature-content">
+                    <h3>Love Story Timeline</h3>
+                    <p>Our Journey Together</p>
+                </div>
+                <div class="feature-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+            </a>
+        </div>
+    </section>
+
+    <section class="ai-recommendation-section" id="aiGiftRecommendation" aria-labelledby="aiRecommendationTitle">
+        <div class="ai-recommendation-copy">
+            <p class="ai-recommendation-eyebrow">Personal gifting, made simple</p>
+            <h2 id="aiRecommendationTitle">✨ AI Gift Recommendation</h2>
+            <p>Tell us about them and the moment. Gemini will find three thoughtful gifts from the Love Gifts collection.</p>
+        </div>
+        <form class="ai-recommendation-form" id="aiRecommendationForm" novalidate>
+            <label>Who is the gift for?
+                <select name="recipient" required>
+                    <option value="">Choose a recipient</option><option>Girlfriend</option><option>Boyfriend</option><option>Wife</option><option>Husband</option><option>Mother</option><option>Father</option><option>Friend</option><option>Other</option>
+                </select>
+            </label>
+            <label>Occasion
+                <select name="occasion" required>
+                    <option value="">Choose an occasion</option><option>Birthday</option><option>Anniversary</option><option>Valentine's Day</option><option>Wedding</option><option>Friendship</option><option>Just Because</option><option>Other</option>
+                </select>
+            </label>
+            <label>Budget
+                <select name="budget" required>
+                    <option value="">Choose a budget</option><option value="500">₹500</option><option value="1000">₹1000</option><option value="1500">₹1500</option><option value="2000">₹2000</option><option value="5000">₹5000</option><option value="custom">Custom budget</option>
+                </select>
+            </label>
+            <label class="custom-budget-field" hidden>Custom budget (₹)
+                <input name="customBudget" type="number" min="1" step="1" placeholder="Enter your budget">
+            </label>
+            <label>Interests / likes
+                <input name="interests" type="text" required placeholder="flowers, chocolates, cute things, books">
+            </label>
+            <label>Personality / preference <span>(optional)</span>
+                <input name="personality" type="text" placeholder="romantic, cute, simple, elegant">
+            </label>
+            <button class="ai-recommendation-submit" type="submit">✨ Find My Perfect Gift</button>
+        </form>
+        <p class="ai-recommendation-status" id="aiRecommendationStatus" role="status" aria-live="polite"></p>
+        <div class="ai-recommendation-results" id="aiRecommendationResults" aria-live="polite"></div>
+    </section>
+    
+    <!-- Category section - Clickable category cards that redirect to category pages -->
+    <section class="categories">
+        <a href="flowers.html" class="cat-link">
+            <div class="cat">
+                <img src="love_files/bouquet-bright-white-yellow-roses-gray-concrete-background-bright-yellow-roses-113623305.jpg" alt="Flowers">
+                <p>Flowers</p>
+            </div>
+        </a>
+        <!-- Link to Teddy category page -->
+        <a href="teddy.html" class="cat-link">
+            <div class="cat">
+                <img src="teddy.jpg" alt="Teddy">
+                <p>Teddy</p>
+            </div>
+        </a>
+        <!-- Link to Chocolates category page -->
+        <a href="chocolates.html" class="cat-link">
+            <div class="cat">
+                <img src="chocalate.png" alt="Chocolates">
+                <p>Chocolates</p>
+            </div>
+        </a>
+        <!-- Link to Jewelry category page -->
+        <a href="jewelry.html" class="cat-link">
+            <div class="cat">
+                <img src="Jwellery.png.jpg" alt="Jewelry">
+                <p>Jewelry</p>
+            </div>
+        </a>
+        <!-- Link to Hearts category page -->
+        <a href="hearts.html" class="cat-link">
+            <div class="cat">
+                <img src="Hearts.jpg.jpg" alt="Heart">
+                <p>Heart</p>
+            </div>
+        </a>
+        <!-- Link to Gifts category page -->
+        <a href="gifts.html" class="cat-link">
+            <div class="cat">
+                <img src="Gifts_files/beautiful-gift-with-red-ribbon_58409-3056.jpg" alt="Gifts">
+                <p>Gifts</p>
+            </div>
+        </a>    
+    </section>
+    
+    <!-- Section heading -->
+    <span class="bhaai">
+    <h2>Let's start</h2>
+    </span>
+    
+    <!-- First row of products -->
+    <section class="bottomgap">
+    <div class="products">
+        <div class="cart">
+            <img src="My Project Images/Red rose bouquet.png" alt="rose">
+            <h3>Red Rose Bouquet</h3>
+            <!-- Price display with Indian Rupee symbol -->
+            <p><i class=" fa-solid fa-indian-rupee"></i>599</p>
+            <!-- Cart section with add to cart button and quantity counter -->
+            <div class="cart-section">
+                <!-- Add to cart button - onclick shows counter -->
+                <button class="cartHra visited" onclick="showCounter(this)">Add Cart <i class="fa-solid fa-cart-shopping"></i>
+                </button>
+                <!-- Heart/Wishlist button - adds item to wishlist -->
+                <button class="wishlist-btn" onclick="addToWishlist(this)" title="Add to Wishlist">🤍</button>
+                <!-- Hidden counter - appears when item is added -->
+                <div class="counter" style="display: none;">
+                    <!-- Decrease quantity button -->
+                    <button onclick="decrease(this)">-</button>
+                    <!-- Display current quantity -->
+                    <span class="count">1</span>
+                    <!-- Increase quantity button -->
+                    <button onclick="increase(this)">+</button>
+                </div>
+            </div>
+        </div>
+        <div class="cart">
+            <img src="teddy.jpg" alt="Teddy">
+            <h3>Teddy Bear</h3>
+            <p><i class=" fa-solid fa-indian-rupee"></i>299</p>
+            <div class="cart-section">
+                <button class="cartHra visited" onclick="showCounter(this)">Add Cart <i class="fa-solid fa-cart-shopping"></i>
+                </button>
+                <button class="wishlist-btn" onclick="addToWishlist(this)" title="Add to Wishlist">🤍</button>
+                <div class="counter" style="display: none;">
+                    <button onclick="decrease(this)">-</button>
+                    <span class="count">1</span>
+                    <button onclick="increase(this)">+</button>
+                </div>
+            </div>
+        </div>
+        <div class="cart">
+            <img src="love_files/bouquet-red-roses-2432330.jpg" alt="love">
+            <h3>Bouquet</h3>
+            <p><i class=" fa-solid fa-indian-rupee"></i>199</p>
+            <div class="cart-section">
+                <button class="cartHra visited" onclick="showCounter(this)">Add Cart <i class="fa-solid fa-cart-shopping"></i>
+                </button>
+                <button class="wishlist-btn" onclick="addToWishlist(this)" title="Add to Wishlist">🤍</button>
+                <div class="counter" style="display: none;">
+                    <button onclick="decrease(this)">-</button>
+                    <span class="count">1</span>
+                    <button onclick="increase(this)">+</button>
+                </div>
+            </div>
+        </div>
+        <div class="cart">
+            <img src="love_files/heart-1792238.jpg" alt="Hearts">
+            <h3>Hearts</h3>
+            <p><i class=" fa-solid fa-indian-rupee"></i>49</p>
+            <div>
+            <div class="cart-section">
+                <button class="cartHra visited" onclick="showCounter(this)">Add Cart <i class="fa-solid fa-cart-shopping"></i>
+                </button>
+                <button class="wishlist-btn" onclick="addToWishlist(this)" title="Add to Wishlist">🤍</button>
+                <div class="counter" style="display: none;">
+                    <button onclick="decrease(this)">-</button>
+                    <span class="count">1</span>
+                    <button onclick="increase(this)">+</button>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+    </section>
+    <section class="topgap">
+    <div class="secondDivision">
+        <div class="secondone">
+            <img src="love_files/flower-bouquet-pink-roses-isolated-white-background-88839971.jpg" alt="Bouquet">
+            <h3>Pink Bouquet</h3>
+            <p><i class=" fa-solid fa-indian-rupee"></i>999</p>
+            <div class="cart-section">
+                <button class="cartHra visited" onclick="showCounter(this)">Add Cart <i class="fa-solid fa-cart-shopping"></i>
+                </button>
+                <button class="wishlist-btn" onclick="addToWishlist(this)" title="Add to Wishlist">🤍</button>
+                <div class="counter" style="display: none;">
+                    <button onclick="decrease(this)">-</button>
+                    <span class="count">1</span>
+                    <button onclick="increase(this)">+</button>
+                </div>
+            </div>
+        </div>
+        <div class="secondone">
+            <img src="love_files/frame-roses-14646893.jpg" alt="Rose">
+            <h3>Rose</h3>
+            <p><i class=" fa-solid fa-indian-rupee"></i>79</p>
+            <div class="cart-section">
+                <button class="cartHra visited" onclick="showCounter(this)">Add Cart <i class="fa-solid fa-cart-shopping"></i>
+                </button>
+                <button class="wishlist-btn" onclick="addToWishlist(this)" title="Add to Wishlist">🤍</button>
+                <div class="counter" style="display: none;">
+                    <button onclick="decrease(this)">-</button>
+                    <span class="count">1</span>
+                    <button onclick="increase(this)">+</button>
+                </div>
+            </div>
+        </div>
+        <div class="secondone">
+            <img src="Gifts_files/beautiful-gift-box-valentine-lying-wood-holiday-concept_169016-4203.jpg" alt="Beautiful Gifts">
+            <h3>Bengaluru Gift</h3>
+            <p><i class=" fa-solid fa-indian-rupee"></i>1999</p>
+            <div class="cart-section">
+                <button class="cartHra visited" onclick="showCounter(this)">Add Cart <i class="fa-solid fa-cart-shopping"></i>
+                </button>
+                <button class="wishlist-btn" onclick="addToWishlist(this)" title="Add to Wishlist">🤍</button>
+                <div class="counter" style="display: none;">
+                    <button onclick="decrease(this)">-</button>
+                    <span class="count">1</span>
+                    <button onclick="increase(this)">+</button>
+                </div>
+            </div>
+        </div>
+        <div class="secondone">
+            <img src="love_files/red-pink-heart-rose-petals-14813788.jpg" alt="pink Hearts">
+            <h3>Red pink Heart</h3>
+            <p><i class=" fa-solid fa-indian-rupee"></i>499</p>
+            <div class="cart-section">
+                <button class="cartHra visited" onclick="showCounter(this)">Add Cart <i class="fa-solid fa-cart-shopping"></i>
+                </button>
+                <button class="wishlist-btn" onclick="addToWishlist(this)" title="Add to Wishlist">🤍</button>
+                <div class="counter" style="display: none;">
+                    <button onclick="decrease(this)">-</button>
+                    <span class="count">1</span>
+                    <button onclick="increase(this)">+</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </section>
+    <section class="thirdgap">
+    <div class="thirdDivision">
+        <div class="thirdone">
+            <img src="love_files/antique-rustic-dark-golden-picture-frame-isolated-846970.jpg" alt="golden frame">
+            <h3>Golden Frame></Frame></h3>
+            <p><i class=" fa-solid fa-indian-rupee"></i>699</p>
+            <div class="cart-section">
+                <button class="cartHra visited" onclick="showCounter(this)">Add Cart <i class="fa-solid fa-cart-shopping"></i>
+                </button>
+                <button class="wishlist-btn" onclick="addToWishlist(this)" title="Add to Wishlist">🤍</button>
+                <div class="counter" style="display: none;">
+                    <button onclick="decrease(this)">-</button>
+                    <span class="count">1</span>
+                    <button onclick="increase(this)">+</button>
+                </div>
+            </div>
+        </div>
+        <div class="thirdone">
+            <img src="love_files/forever-rose-03194.jpg" alt="Khasmir rose">
+            <h3>Khasmir rose</h3>
+            <p><i class=" fa-solid fa-indian-rupee"></i>2999</p>
+            <div class="cart-section">
+                <button class="cartHra visited" onclick="showCounter(this)">Add Cart <i class="fa-solid fa-cart-shopping"></i>
+                </button>
+                <button class="wishlist-btn" onclick="addToWishlist(this)" title="Add to Wishlist">🤍</button>
+                <div class="counter" style="display: none;">
+                    <button onclick="decrease(this)">-</button>
+                    <span class="count">1</span>
+                    <button onclick="increase(this)">+</button>
+                </div>
+            </div>
+        </div>
+        <div class="thirdone">
+            <img src="Gifts_files/valentines-background-with-red-gift-box-heart-shape-couple-combination-padlock-white-wooden_35355-2515.jpg" alt="red gift">
+            <h3>Red Gift</h3>
+            <p><i class=" fa-solid fa-indian-rupee"></i>3999</p>
+            <div class="cart-section">
+                <button class="cartHra visited" onclick="showCounter(this)">Add Cart <i class="fa-solid fa-cart-shopping"></i>
+                </button>
+                <button class="wishlist-btn" onclick="addToWishlist(this)" title="Add to Wishlist">🤍</button>
+                <div class="counter" style="display: none;">
+                    <button onclick="decrease(this)">-</button>
+                    <span class="count">1</span>
+                    <button onclick="increase(this)">+</button>
+                </div>
+            </div>
+        </div>
+        <div class="thirdone ">
+            <img src="Jwellery_files/golden-jewelry-chains-set_1284-11761.jpg" alt="Jwells">
+            <h3>Golden Jwellery</h3>
+            <p><i class=" fa-solid fa-indian-rupee"></i>1599</p>
+            <div class="cart-section">
+                <button class="cartHra visited" onclick="showCounter(this)">Add Cart <i class="fa-solid fa-cart-shopping"></i>
+                </button>
+                <button class="wishlist-btn" onclick="addToWishlist(this)" title="Add to Wishlist">🤍</button>
+                <div class="counter" style="display: none;">
+                    <button onclick="decrease(this)">-</button>
+                    <span class="count">1</span>
+                    <button onclick="increase(this)">+</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </section>
+    <section class="offers">
+        <div class="offer">
+            <h3>Combo offers</h3>
+            <p>Save More With Combos</p>
+            <button>Shop Now</button>
+        </div>
+        <div class="offer">
+            <h3>Personalized Gifts</h3>
+            <p>Make It Special</p>
+            <button>Explore</button>
+        </div>
+        <div class="offer">
+            <h3>Surprise Boxes</h3>
+            <p>Perfect For Lovers</p>
+            <button>View</button>
+        </div>
+    </section>
+</body>
+</html>

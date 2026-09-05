@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Virtual Gift Unboxing</title>
+  <link rel="stylesheet" href="virtual-unboxing.css" />
+</head>
+<body>
+  <main class="page-shell">
+    <section class="hero-card">
+      <div class="hero-copy">
+        <p class="eyebrow">Love Gifts Experience</p>
+        <h1>Virtual Gift Unboxing</h1>
+        <p>Turn every delivery into a magical reveal with a cinematic surprise experience that feels premium from the first click.</p>
+        <div class="button-row">
+          <a class="btn btn-primary" href="sajeeth.html">Back to Home</a>
+          <a class="btn btn-secondary" href="#features">Explore Features</a>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="gift-box">🎁</div>
+      </div>
+    </section>
+
+    <section id="features" class="feature-grid">
+      <article class="info-card">
+        <h2>Reveal Animation</h2>
+        <p>Layered motion and elegant transitions make the unboxing feel luxurious and memorable.</p>
+      </article>
+      <article class="info-card">
+        <h2>Personal Touch</h2>
+        <p>Show romantic notes, custom colors, and product highlights to make each gift feel one-of-a-kind.</p>
+      </article>
+      <article class="info-card">
+        <h2>Mobile Friendly</h2>
+        <p>Every detail is optimized for phones, tablets, and desktop screens.</p>
+      </article>
+    </section>
+
+    <section class="unbox-section" aria-label="interactive gift selector">
+      <div class="unbox-panel">
+        <div class="gift-selector">
+          <h2>Select a Gift</h2>
+          <div class="gift-options" id="giftOptions"></div>
+        </div>
+
+        <div class="gift-stage">
+          <div class="gift-box-scene">
+            <div class="gift-ribbon"></div>
+            <div class="gift-lid"></div>
+            <div class="gift-base"></div>
+            <div class="gift-confetti" id="confetti"></div>
+          </div>
+          <div class="gift-actions">
+            <button id="openGiftBtn" class="action-btn primary">Open Gift</button>
+            <button id="restartGiftBtn" class="action-btn secondary">Open Another Gift</button>
+          </div>
+        </div>
+
+        <div class="gift-reveal" id="giftReveal" aria-live="polite">
+          <div class="gift-reveal-empty">Choose a gift and open it to reveal your surprise.</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="virtual-unboxing.js"></script>
+</body>
+</html>
